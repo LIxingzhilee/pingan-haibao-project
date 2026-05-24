@@ -5,52 +5,288 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>平安好医生商保专享活动｜江苏城市专属福利</title>
   <style>
-    :root { --primary:#0A5C36; --bg:#F8F9FA; --text:#212529; --muted:#6C757D; --chip:#F1F3F5; --card:#FFF; --line:rgba(33,37,41,.08); }
+    :root{
+      --red:#e60012;
+      --deep-red:#a80810;
+      --orange:#ff7a1c;
+      --gold:#ffd36a;
+      --cream:#fff7df;
+      --ink:#2a1512;
+      --muted:#8a5a36;
+      --line:rgba(166,43,22,.14);
+      --card:#fffdf8;
+      --shadow:0 20px 50px rgba(118,10,14,.16);
+    }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei","Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.56;letter-spacing:.2px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-    .app{max-width:520px;min-height:100dvh;margin:0 auto;display:flex;flex-direction:column}
-    .header{position:sticky;top:0;z-index:30;background:rgba(248,249,250,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .header-inner{padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .brand{font-size:16px;font-weight:700;letter-spacing:.6px;line-height:1.25;min-width:0}
-    .location{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px}
-    .content{padding:16px;display:flex;flex-direction:column;gap:16px;flex:1}
-    .hero{font-size:14px;color:var(--muted);margin-top:2px}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Arial,sans-serif;
+      line-height:1.55;
+      background:
+        radial-gradient(circle at 18% 8%,rgba(255,211,106,.35),transparent 26%),
+        linear-gradient(180deg,#fff8e8 0,#fff 34%,#fff7ed 100%);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .page{max-width:760px;min-height:100dvh;margin:0 auto;background:#fff;box-shadow:0 0 0 1px rgba(230,0,18,.04)}
+    .topbar{
+      position:sticky;top:0;z-index:40;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(230,0,18,.08);
+    }
+    .topbar-inner{padding:calc(env(safe-area-inset-top) + 10px) 18px 10px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+    .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#ff8b24,#ff5a16);display:grid;place-items:center;box-shadow:0 8px 18px rgba(255,90,22,.28);flex:0 0 auto}
+    .logo svg{width:24px;height:24px;display:block}
+    .brand-title{font-size:16px;font-weight:800;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand-sub{font-size:11px;color:var(--muted);margin-top:1px}
+    .location{border:1px solid rgba(230,0,18,.12);background:#fff8ef;color:var(--deep-red);border-radius:999px;padding:6px 9px;font-size:12px;font-weight:700;white-space:nowrap}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:28px 18px 22px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 84% 22%,rgba(255,211,106,.38),transparent 23%),
+        linear-gradient(145deg,#e60012 0%,#f32717 58%,#ff7a1c 100%);
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:radial-gradient(circle,rgba(255,223,129,.72) 0 5px,transparent 6px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(120deg,#000 0,transparent 42%);
+      opacity:.55;
+    }
+    .hero-inner{position:relative;z-index:1}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.26);font-size:12px;font-weight:700;color:#fff9db}
+    h1{margin:18px 0 8px;font-size:34px;line-height:1.06;letter-spacing:0;font-weight:900}
+    .hero-copy{margin:0;max-width:560px;color:#fff9e8;font-size:15px}
+    .hero-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+    .action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:800}
+    .action.primary{background:#fff;color:var(--red);box-shadow:0 12px 24px rgba(112,0,8,.18)}
+    .action.secondary{color:#fff;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.12)}
+    .content{padding:18px;display:flex;flex-direction:column;gap:20px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .section-kicker{margin:0 0 3px;color:var(--red);font-size:12px;font-weight:900;letter-spacing:.8px}
+    .section-title{margin:0;font-size:20px;line-height:1.25;font-weight:900}
+    .section-note{margin:0;color:var(--muted);font-size:12px;text-align:right}
+    .main-poster-card,.poster-card,.share-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .main-poster-wrap{padding:10px;background:linear-gradient(180deg,#fff,#fff8e8)}
+    .main-poster{display:block;width:100%;height:auto;border-radius:12px;background:#fff}
+    .main-caption{padding:13px 15px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .main-caption strong{display:block;font-size:15px}
+    .main-caption span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+    .pill{display:inline-flex;align-items:center;border-radius:999px;background:#fff1d0;color:#9c5300;border:1px solid rgba(255,184,66,.5);padding:6px 9px;font-size:11px;font-weight:800;white-space:nowrap}
     .city-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .city-btn{border:0;background:var(--chip);color:#495057;border-radius:12px;padding:10px 8px;min-height:40px;font-size:13px;font-weight:500;letter-spacing:1px;transition:all .3s ease;cursor:pointer}
+    .city-btn{
+      border:1px solid rgba(230,0,18,.12);
+      background:#fffaf1;
+      color:#5b2f22;
+      border-radius:10px;
+      padding:10px 6px;
+      min-height:42px;
+      font-size:13px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
+    }
     .city-btn:active{transform:scale(.98)}
-    .city-btn.active{background:var(--primary);color:#fff;box-shadow:0 8px 20px rgba(10,92,54,.2)}
-    .poster-shell{padding:0 2px}
-    .poster-card{margin:0;background:var(--card);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.05);overflow:hidden}
-    .poster-list{display:flex;flex-direction:column;background:#fff;opacity:1;transition:opacity .3s ease}
+    .city-btn.active{background:linear-gradient(135deg,var(--red),#ff5a16);color:#fff;border-color:transparent;box-shadow:0 10px 22px rgba(230,0,18,.22)}
+    .city-btn.missing{color:#b99b84;background:#fbf6ee;border-style:dashed;cursor:not-allowed}
+    .poster-list{display:flex;flex-direction:column;background:#fff;opacity:1;transition:opacity .26s ease}
     .poster-list.fade-out{opacity:0}
-    .poster{width:100%;height:auto;object-fit:contain;display:block;background:#fff}
-    .poster+.poster{border-top:1px solid var(--line)}
-    .poster-meta{padding:12px 14px 14px;background:linear-gradient(180deg,rgba(255,255,255,.98),#fff)}
-    .poster-title{margin:0;font-size:15px;font-weight:600;color:var(--text)}
-    .poster-subtitle{margin:4px 0 0;font-size:12px;color:var(--muted)}
-    .footer{text-align:center;color:var(--muted);font-size:11px;padding:14px 16px calc(env(safe-area-inset-bottom) + 16px)}
+    .poster{display:block;width:100%;height:auto;background:#fff}
+    .poster+.poster{border-top:10px solid #fff5e3}
+    .poster-meta{padding:14px 15px 16px;background:linear-gradient(180deg,#fff,#fff9ec)}
+    .poster-title{margin:0;font-size:17px;line-height:1.25;font-weight:900}
+    .poster-subtitle{margin:5px 0 0;font-size:12px;color:var(--muted)}
+    .share-card{display:grid;grid-template-columns:1fr 138px;gap:14px;align-items:center;padding:14px;background:linear-gradient(135deg,#fffaf0,#fff)}
+    .share-title{margin:0;font-size:17px;font-weight:900}
+    .share-copy{margin:5px 0 0;color:var(--muted);font-size:12px}
+    .share-url{margin-top:9px;color:var(--red);font-size:12px;font-weight:800;word-break:break-all}
+    .qr-thumb{display:block;width:138px;height:auto;border-radius:14px;box-shadow:0 10px 22px rgba(230,0,18,.14)}
+    .footer{text-align:center;color:#a58169;font-size:11px;padding:4px 18px calc(env(safe-area-inset-bottom) + 18px)}
+    @media (max-width:460px){
+      .page{max-width:none}
+      h1{font-size:30px}
+      .city-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .section-head{align-items:flex-start;flex-direction:column;gap:4px}
+      .section-note{text-align:left}
+      .share-card{grid-template-columns:1fr 112px}
+      .qr-thumb{width:112px}
+      .main-caption{align-items:flex-start;flex-direction:column}
+    }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="header"><div class="header-inner"><div class="brand">平安好医生商保专享活动</div><div id="locationText" class="location">📍 正在为您定位...</div></div></header>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-mark">
+          <div class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="img">
+              <path fill="#fff" d="M16 18c0-7 6-12 14-12h5c9 0 15 6 15 14v8c0 8-6 14-15 14H28L14 53l4-12c-5-3-8-8-8-14v-9z"/>
+              <path fill="#e60012" d="M28 14h8v7h7v8h-7v7h-8v-7h-7v-8h7z"/>
+              <path fill="#ff7a1c" d="M39 35a9 9 0 0 0 13-7h4a13 13 0 0 1-20 11z"/>
+              <circle cx="43" cy="25" r="3" fill="#ff7a1c"/>
+              <circle cx="53" cy="25" r="3" fill="#ff7a1c"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">平安好医生</div>
+            <div class="brand-sub">商保专享活动</div>
+          </div>
+        </div>
+        <div id="locationText" class="location">当前城市：苏州</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">商保用户专享 · 红包秒到账</div>
+        <h1>平安好医生商保专享活动</h1>
+        <p class="hero-copy">先看主活动规则，再选择所在城市查看专属海报。顾客扫码后可以直接进入活动页，也能快速切换城市福利。</p>
+        <div class="hero-actions">
+          <a class="action primary" href="#mainPoster">查看主活动海报</a>
+          <a class="action secondary" href="#cityPosters">选择城市海报</a>
+        </div>
+      </div>
+    </section>
+
     <main class="content">
-      <section class="hero">商保权益，健康直达。为你定制的城市专属福利。</section>
-      <section class="city-grid" id="cityGrid" aria-label="城市选择"></section>
-      <section class="poster-shell"><figure class="poster-card" aria-live="polite"><div id="posterList" class="poster-list"></div><figcaption class="poster-meta"><h2 id="posterTitle" class="poster-title"></h2><p id="posterSubtitle" class="poster-subtitle"></p></figcaption></figure></section>
+      <section id="mainPoster">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">MAIN CAMPAIGN</p>
+            <h2 class="section-title">主活动海报</h2>
+          </div>
+          <p class="section-note">扫码进站第一眼展示</p>
+        </div>
+        <article class="main-poster-card">
+          <div class="main-poster-wrap">
+            <img class="main-poster" src="海报图片/平安好医生主活动海报.jpg" alt="平安好医生参与活动红包秒到账主活动海报" />
+          </div>
+          <div class="main-caption">
+            <div>
+              <strong>参与活动，红包秒到账</strong>
+              <span>分享邀请参与，多邀多得。具体规则以平安好医生 APP 内说明为准。</span>
+            </div>
+            <span class="pill">商保专享</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="cityPosters">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">CITY BENEFITS</p>
+            <h2 class="section-title">选择城市专属海报</h2>
+          </div>
+          <p class="section-note">缺少海报的城市暂不展示</p>
+        </div>
+        <div class="city-grid" id="cityGrid" aria-label="城市选择"></div>
+        <article class="poster-card" aria-live="polite">
+          <div id="posterList" class="poster-list"></div>
+          <div class="poster-meta">
+            <h2 id="posterTitle" class="poster-title"></h2>
+            <p id="posterSubtitle" class="poster-subtitle"></p>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">SHARE QR</p>
+            <h2 class="section-title">活动二维码</h2>
+          </div>
+          <p class="section-note">用于海报、朋友圈、门店物料</p>
+        </div>
+        <article class="share-card">
+          <div>
+            <h2 class="share-title">扫码进入活动页</h2>
+            <p class="share-copy">二维码已按平安好医生红橙视觉重新设计，当前先指向 Vercel 应急链接。</p>
+            <div class="share-url">pingan-haibao-project.vercel.app</div>
+          </div>
+          <a href="平安好医生商保专享活动-高级二维码.png" aria-label="打开活动二维码">
+            <img class="qr-thumb" src="平安好医生商保专享活动-高级二维码.png" alt="平安好医生商保专享活动二维码" />
+          </a>
+        </article>
+      </section>
     </main>
+
     <footer class="footer">© 2026 平安好医生商保专享活动 · 活动内容以实际公告为准</footer>
   </div>
+
   <script>
-    const cities=['南京','苏州','无锡','常州','镇江','南通','泰州','扬州','盐城','淮安','宿迁','徐州','连云港'];
-    const campaignData={南京:{title:'南京 · 城市健康礼遇',subtitle:'门店专属福利已上线',poster:'海报图片/南京.jpg'},苏州:{title:'苏州 · 品质康养季',subtitle:'甄选好物与健康服务',poster:'海报图片/苏州.jpg'},无锡:{title:'无锡 · 安心守护计划',subtitle:'家庭常备与换季关怀',poster:'海报图片/无锡.jpg'},常州:{title:'常州 · 轻养生活节',subtitle:'科学补给，舒缓有度',poster:'海报图片/常州.jpg'},镇江:{title:'镇江 · 健康焕新周',subtitle:'到店即享城市限定礼',poster:'海报图片/镇江.jpg'},南通:{title:'南通 · 家庭关爱月',subtitle:'一站式备齐健康所需',poster:'海报图片/南通.jpg'},泰州:{title:'泰州 · 慢病关护专场',subtitle:'贴心服务更安心',poster:'海报图片/泰州.jpg'},扬州:{title:'扬州 · 城市福利站',subtitle:'精选品类限时礼遇',poster:'https://picsum.photos/seed/yangzhou-med/900/1600'},盐城:{title:'盐城 · 清新养护礼',subtitle:'日常健康管理更简单',poster:'https://picsum.photos/seed/yancheng-med/900/1600'},淮安:{title:'淮安 · 安心购药周',subtitle:'品质保障，实惠到家',poster:'https://picsum.photos/seed/huaian-med/900/1600'},宿迁:{title:'宿迁 · 元气补给季',subtitle:'活力生活，从健康开始',poster:'海报图片/宿迁.png'},徐州:{title:'徐州 · 守护行动',subtitle:'全龄健康关怀计划',poster:'海报图片/徐州.jpg'},连云港:{title:'连云港 · 海滨健康季',subtitle:'城市限定福利持续中',poster:['海报图片/连云港.jpg','海报图片/连云港1.jpg']}};
-    const cityGrid=document.getElementById('cityGrid'); const locationText=document.getElementById('locationText'); const posterList=document.getElementById('posterList'); const posterTitle=document.getElementById('posterTitle'); const posterSubtitle=document.getElementById('posterSubtitle');
-    let activeCity='苏州';
-    function renderCityTabs(){cityGrid.innerHTML='';cities.forEach(city=>{const btn=document.createElement('button');btn.className=`city-btn ${city===activeCity?'active':''}`;btn.textContent=city;btn.setAttribute('aria-pressed',city===activeCity?'true':'false');btn.addEventListener('click',()=>setActiveCity(city));cityGrid.appendChild(btn);});}
-    function updatePoster(city){const data=campaignData[city];posterList.classList.add('fade-out');setTimeout(()=>{const posters=Array.isArray(data.poster)?data.poster:[data.poster];posterList.innerHTML=posters.map((poster,index)=>`<img class="poster" src="${poster}" alt="${city}活动海报${posters.length>1?index+1:''}" />`).join('');posterTitle.textContent=data.title;posterSubtitle.textContent=data.subtitle;},140);setTimeout(()=>posterList.classList.remove('fade-out'),300);}
-    function setActiveCity(city){if(city===activeCity)return;activeCity=city;locationText.textContent=`📍 当前城市：${city}`;renderCityTabs();updatePoster(city);}    
-    function initLocationStyle(){setTimeout(()=>{locationText.textContent=`📍 当前城市：${activeCity}`;},700);}    
-    renderCityTabs();updatePoster(activeCity);initLocationStyle();
+    const cities = ['南京','苏州','无锡','常州','镇江','南通','泰州','扬州','盐城','淮安','宿迁','徐州','连云港'];
+    const campaignData = {
+      南京:{title:'南京 · 城市健康礼遇',subtitle:'门店专属福利已上线',poster:'海报图片/南京.jpg'},
+      苏州:{title:'苏州 · 品质康养季',subtitle:'甄选好物与健康服务',poster:'海报图片/苏州.jpg'},
+      无锡:{title:'无锡 · 安心守护计划',subtitle:'家庭常备与换季关怀',poster:'海报图片/无锡.jpg'},
+      常州:{title:'常州 · 轻养生活节',subtitle:'科学补给，舒缓有度',poster:'海报图片/常州.jpg'},
+      镇江:{title:'镇江 · 健康焕新周',subtitle:'到店即享城市限定礼',poster:'海报图片/镇江.jpg'},
+      南通:{title:'南通 · 家庭关爱月',subtitle:'一站式备齐健康所需',poster:'海报图片/南通.jpg'},
+      泰州:{title:'泰州 · 慢病关护专场',subtitle:'贴心服务更安心',poster:'海报图片/泰州.jpg'},
+      扬州:{title:'扬州 · 城市福利站',subtitle:'海报暂未上传，上传后将开放展示',poster:null},
+      盐城:{title:'盐城 · 清新养护礼',subtitle:'海报暂未上传，上传后将开放展示',poster:null},
+      淮安:{title:'淮安 · 安心购药周',subtitle:'海报暂未上传，上传后将开放展示',poster:null},
+      宿迁:{title:'宿迁 · 元气补给季',subtitle:'活力生活，从健康开始',poster:'海报图片/宿迁.png'},
+      徐州:{title:'徐州 · 守护行动',subtitle:'全龄健康关怀计划',poster:'海报图片/徐州.jpg'},
+      连云港:{title:'连云港 · 海滨健康季',subtitle:'两张海报已上下连续展示',poster:['海报图片/连云港.jpg','海报图片/连云港1.jpg']}
+    };
+    const cityGrid = document.getElementById('cityGrid');
+    const locationText = document.getElementById('locationText');
+    const posterList = document.getElementById('posterList');
+    const posterTitle = document.getElementById('posterTitle');
+    const posterSubtitle = document.getElementById('posterSubtitle');
+    let activeCity = '苏州';
+
+    function renderCityTabs(){
+      cityGrid.innerHTML = '';
+      cities.forEach(city => {
+        const data = campaignData[city];
+        const btn = document.createElement('button');
+        btn.className = `city-btn ${city === activeCity ? 'active' : ''} ${data.poster ? '' : 'missing'}`;
+        btn.textContent = city;
+        btn.disabled = !data.poster;
+        btn.setAttribute('aria-pressed', city === activeCity ? 'true' : 'false');
+        if (data.poster) btn.addEventListener('click', () => setActiveCity(city));
+        cityGrid.appendChild(btn);
+      });
+    }
+    function updatePoster(city){
+      const data = campaignData[city];
+      if (!data.poster) return;
+      posterList.classList.add('fade-out');
+      setTimeout(() => {
+        const posters = Array.isArray(data.poster) ? data.poster : [data.poster];
+        posterList.innerHTML = posters.map((poster,index) => `<img class="poster" src="${poster}" alt="${city}活动海报${posters.length>1 ? index+1 : ''}" />`).join('');
+        posterTitle.textContent = data.title;
+        posterSubtitle.textContent = data.subtitle;
+      }, 120);
+      setTimeout(() => posterList.classList.remove('fade-out'), 260);
+    }
+    function setActiveCity(city){
+      if (city === activeCity) return;
+      activeCity = city;
+      locationText.textContent = `当前城市：${city}`;
+      renderCityTabs();
+      updatePoster(city);
+    }
+
+    renderCityTabs();
+    updatePoster(activeCity);
   </script>
 </body>
 </html>
